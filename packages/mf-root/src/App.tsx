@@ -1,9 +1,10 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
+import {FC} from 'react';
 
-import './index.scss'
+import './index.css';
 
-const App = () => (
+type TProps = {};
+
+const AppContainer: FC<TProps> = () => (
   <div className="mt-10 text-3xl mx-auto max-w-6xl">
     <div>Name: mf-root</div>
     <div>Framework: react</div>
@@ -11,9 +12,5 @@ const App = () => (
     <div>CSS: Tailwind</div>
   </div>
 )
-const rootElement = document.getElementById('app')
-if (!rootElement) throw new Error('Failed to find the root element')
 
-const root = ReactDOM.createRoot(rootElement as HTMLElement)
-
-root.render(<App />)
+export const App = AppContainer;

@@ -1,18 +1,20 @@
 {
   "name": "mf-root",
   "version": "1.0.0",
+  "description": "Root for microfrontends",
   "scripts": {
-    "build": "webpack --mode production",
-    "build:dev": "webpack --mode development",
-    "build:start": "cd dist && PORT=3000 npx serve",
-    "start": "webpack serve --mode development",
-    "start:live": "webpack serve --mode development --live-reload --hot"
+    "build": "webpack --node-env=production",
+    "build:dev": "webpack --node-env=development",
+    "build:prod": "webpack --node-env=production",
+    "start": "webpack serve --node-env=development",
+    "watch": "webpack --watch"
   },
   "license": "MIT",
   "author": {
-    "name": "Jack Herrington",
-    "email": "jherr@pobox.com"
+    "name": "Yuri Cherepanov",
+    "email": "xolmes@ya.ru"
   },
+  "packageManager": "yarn@3.6.1",
   "devDependencies": {
     "@babel/core": "^7.15.8",
     "@babel/plugin-transform-runtime": "^7.15.8",

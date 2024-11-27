@@ -79,7 +79,8 @@ module.exports = (_, argv) => ({
       },
     }),
     new HtmlWebPackPlugin({
-      template: "./src/index.html",
+      template: "./public/index.html",
+      favicon: "./public/favicon.png"
     }),
     new Dotenv()
   ],
