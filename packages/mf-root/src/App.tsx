@@ -2,10 +2,12 @@ import {FC} from 'react';
 
 import './index.css';
 
-type TProps = {};
+// interface IProps {
+//   // remotes: IFederatedItem[];
+// }
 
-const AppContainer: FC<TProps> = () => (
-  <div className="mt-10 text-3xl mx-auto max-w-6xl">
+const AppContainer: FC = () => (
+  <div>
     <div>Name: mf-root</div>
     <div>Framework: react</div>
     <div>Language: TypeScript</div>

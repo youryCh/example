@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   root: true,
-  extends: ['airbnb', 'airbnb/hooks', 'plugin:@typescript-eslint/recommended', 'prettier '],
+  extends: ['airbnb', 'airbnb/hooks', 'plugin:@typescript-eslint/recommended', 'prettier'],
   rules: {
     // import rules
     'import/extensions': [
@@ -59,14 +59,14 @@ module.exports = {
     'max-len': ['error', {code: 140}],
     'no-plusplus': 'off',
     'no-shadow': 'off',
-    'no-trailing-spaces': ['error', {skipBlackLines: true}],
+    'no-trailing-spaces': ['error', {"skipBlankLines": true}],
     'no-underscore-dangle': ['error', {allowAfterThis: true}],
     'no-void': 'off',
     'object-curly-spacing': ['error', 'never']
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {tsconfigRootDir: '.'},
-  plugins: ['@typescript-eslint', 'sort-destructive-keys', 'react-refresh'],
+  plugins: ['@typescript-eslint', 'sort-destructure-keys', 'react-refresh'],
   settings: {
     'import/parsers': {'@typescript-eslint/parser': ['.ts', '.tsx']},
     'import/resolver': {

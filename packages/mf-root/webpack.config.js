@@ -1,87 +1,93 @@
-const HtmlWebPackPlugin = require("html-webpack-plugin");
-const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 const path = require('path');
-const Dotenv = require('dotenv-webpack');
+const {DefinePlugin} = require('webpack');
+const ESLintPlugin = require('eslint-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
-const deps = require("./package.json").dependencies;
+const deps = require('./package.json').dependencies;
+const federation = require('./conf/federation')[process.env.NODE_ENV];
+const api = require('./conf/api');
+const auth = require('./conf/auth');
+const isDev = process.env.NODE_ENV === 'development';
 
-const printCompilationMessage = require('./compilation.config.js');
+module.exports = {
+  target: ['web', 'es6'],
+  entry: './src/index.ts',
+  mode: process.env.NODE_ENV || 'development',
 
-module.exports = (_, argv) => ({
   output: {
-    publicPath: "http://localhost:3000/",
+    filename: 'bundle-[hash].js',
+    globalObject: 'this',
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
   },
 
   resolve: {
-    extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
+    extensions: ['.tsx', '.ts', '.jsx', '.js', '.json'],
+    alias: {
+      '@': path.resolve(__dirname, 'src/')
+    }
   },
 
   devServer: {
     port: 3000,
     historyApiFallback: true,
-    watchFiles: [path.resolve(__dirname, 'src')],
-    onListening: function (devServer) {
-      const port = devServer.server.address().port
-
-      printCompilationMessage('compiling', port)
-
-      devServer.compiler.hooks.done.tap('OutputMessagePlugin', (stats) => {
-        setImmediate(() => {
-          if (stats.hasErrors()) {
-            printCompilationMessage('failure', port)
-          } else {
-            printCompilationMessage('success', port)
-          }
-        })
-      })
-    }
+    open: true,
+    hot: true
   },
 
   module: {
     rules: [
       {
-        test: /\.m?js/,
-        type: "javascript/auto",
-        resolve: {
-          fullySpecified: false,
-        },
-      },
-      {
         test: /\.(css|s[ac]ss)$/i,
-        use: ["style-loader", "css-loader", "postcss-loader"],
+        use: ['style-loader', 'css-loader', 'postcss-loader']
       },
       {
-        test: /\.(ts|tsx|js|jsx)$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-        },
+        test: /\.(ts|tsx)$/i,
+        loader: 'ts-loader',
+        exclude: /node_modules/
       },
+      {
+        test: /\.(svg|ttf|png|jpg|gif)$/i,
+        type: 'asset'
+      }
     ],
   },
 
   plugins: [
     new ModuleFederationPlugin({
       name: "mf_root",
-      filename: "remoteEntry.js",
-      remotes: {},
-      exposes: {},
+      remotes: federation.static,
       shared: {
-        ...deps,
         react: {
           singleton: true,
-          requiredVersion: deps.react,
+          requiredVersion: deps.react
         },
-        "react-dom": {
+        'react-dom': {
           singleton: true,
-          requiredVersion: deps["react-dom"],
+          requiredVersion: deps['react-dom']
         },
+        'react-router-dom': {
+          requiredVersion: deps['react-router-dom'],
+          singleton: true
+        }
       },
     }),
+
     new HtmlWebPackPlugin({
-      template: "./public/index.html",
-      favicon: "./public/favicon.png"
+      template: './public/index.html',
+      favicon: './public/favicon.png'
     }),
-    new Dotenv()
-  ],
-});
+
+    new DefinePlugin({
+      API: JSON.stringify(api),
+      AUTH: JSON.stringify(auth),
+      DYNAMIC_REMOTES: JSON.stringify(federation.dynamic)
+    }),
+
+    isDev && new ESLintPlugin({extensions: ['ts', 'tsx']}),
+
+    new CleanWebpackPlugin()
+  ]
+};

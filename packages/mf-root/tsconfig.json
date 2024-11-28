@@ -8,7 +8,7 @@
     "allowSyntheticDefaultImports": true,
     "module": "esnext",
     "moduleResolution": "node",
-    "isolatedModules": true,
+    "isolatedModules": false, // TODO: temporary
     "resolveJsonModule": true,
     "jsx": "react-jsx",
     "noUnusedLocals": true,
@@ -19,17 +19,8 @@
       "@/*": ["./src/*"]
     },
     "rootDir": "./src"
-    // "esModuleInterop": true,
-    // "strict": true,
-    // "forceConsistentCasingInFileNames": true,
-    // "noEmit": true,
-    // "sourceMap": true,
-    // "declaration": true,
-    // "incremental": true,
-    // "noFallthroughCasesInSwitch": true,
   },
   "include": [
     "src"
-  ],
-  // "exclude": ["node_modules", "build", "dist"]
+  ]
 }
