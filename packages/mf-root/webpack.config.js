@@ -21,6 +21,7 @@ module.exports = {
     globalObject: 'this',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
+    environment: {asyncFunction: true}
   },
 
   resolve: {

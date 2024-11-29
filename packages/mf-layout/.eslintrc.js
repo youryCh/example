@@ -6,7 +6,7 @@ module.exports = {
   rules: {
     // import rules
     'import/extensions': [
-      'off',
+      'error',
       'ignorePackages',
       {
         js: 'never',
@@ -31,14 +31,16 @@ module.exports = {
     'import/prefer-default-export': 'off',
     // react rules
     'react/button-has-type': 'off',
-    'react/destructuring-assignment': 'off',
+    // 'react/destructuring-assignment': 'off',
     'react/function-component-definition': 'off',
     'react/jsx-closing-bracket-location': 'off',
     'react/jsx-filename-extension': [1, {extensions: ['.tsx', '.jsx']}],
     'react/jsx-first-prop-new-line': 'off',
-    'react/jsx-max-props-per-line': ['error', {maximum: 3}],
+    'react/jsx-fragments': [2, 'element'],
+    'react/jsx-max-props-per-line': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/jsx-tag-spacing': 'off',
+    'react/no-unknown-property': [2, {ignore: ['css', 'tw']}],
     'react/prop-types': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/require-default-props': 'off',
@@ -51,12 +53,15 @@ module.exports = {
     '@typescript-eslint/ban-ts-comment': 'off',
     // sort-destructive-keys rules
     'sort-destructure-keys/sort-destructure-keys': ['warn', {caseSensitive: false}],
-    // common
+    // a11y rules
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'jsx-a11y/no-static-element-interactions': 'off',
+    // common rules
     'arrow-parens': 'off',
     'camelcase': 'off',
     'consistent-return': 'off',
     'function-paren-newline': 'off',
-    'max-len': ['error', {code: 140}],
+    'max-len': ['error', {code: 120}],
     'no-plusplus': 'off',
     'no-shadow': 'off',
     'no-trailing-spaces': ['error', {'skipBlankLines': true}],

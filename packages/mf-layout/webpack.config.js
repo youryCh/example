@@ -1,86 +1,91 @@
-const HtmlWebPackPlugin = require("html-webpack-plugin");
-const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+const EsLintPlugin = require('eslint-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const {ModuleFederationPlugin} = require('webpack').container;
+
 const path = require('path');
-const Dotenv = require('dotenv-webpack');
+const deps = require('./package.json').dependencies;
+const isDev = process.env.NODE_ENV === 'development';
 
-const deps = require("./package.json").dependencies;
-
-const printCompilationMessage = require('./compilation.config.js');
-
-module.exports = (_, argv) => ({
+module.exports = {
+  target: ['web', 'es6'],
+  entry: './src/index.ts',
+  mode: process.env.NODE_ENV || 'development',
   output: {
-    publicPath: "http://localhost:3001/",
+    publicPath: 'auto',
+    filename: 'bundle-[hash].js',
+    globalObject: 'this',
+    path: path.resolve(__dirname, 'dist')
   },
 
   resolve: {
-    extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
+    alias: {
+      '@': path.resolve(__dirname, 'src/')
+    },
+    extensions: ['.tsx', '.ts', '.jsx', '.js', '.json']
   },
 
   devServer: {
+    hot: true,
+    open: true,
     port: 3001,
     historyApiFallback: true,
-    watchFiles: [path.resolve(__dirname, 'src')],
-    onListening: function (devServer) {
-      const port = devServer.server.address().port
-
-      printCompilationMessage('compiling', port)
-
-      devServer.compiler.hooks.done.tap('OutputMessagePlugin', (stats) => {
-        setImmediate(() => {
-          if (stats.hasErrors()) {
-            printCompilationMessage('failure', port)
-          } else {
-            printCompilationMessage('success', port)
-          }
-        })
-      })
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+      'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
     }
   },
 
   module: {
     rules: [
       {
-        test: /\.m?js/,
-        type: "javascript/auto",
-        resolve: {
-          fullySpecified: false,
-        },
+        test: /\.(ts|tsx)$/i,
+        loader: 'babel-loader',
+        exclude: ['/node_modules/']
       },
       {
-        test: /\.(css|s[ac]ss)$/i,
-        use: ["style-loader", "css-loader", "postcss-loader"],
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader', 'postcss-loader']
       },
       {
-        test: /\.(ts|tsx|js|jsx)$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-        },
+        test: /\.(eot|woff|woff2|ttf|png|jpg|gif|lottie)$/i,
+        type: 'asset/resource'
       },
-    ],
+      {
+        test: /\.svg$/i,
+        issuer: /\.[jt]sx?$/,
+        use: ['@svgr/webpack']
+      }
+    ]
   },
 
   plugins: [
     new ModuleFederationPlugin({
-      name: "mf_layout",
-      filename: "remoteEntry.js",
-      remotes: {},
-      exposes: {},
-      shared: {
-        ...deps,
-        react: {
-          singleton: true,
-          requiredVersion: deps.react,
-        },
-        "react-dom": {
-          singleton: true,
-          requiredVersion: deps["react-dom"],
-        },
+      name: 'layout',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './NotFoundPage': './src/exposes/NotFoundPageApp',
+        './Main': './src/exposes/LayoutApp'
       },
+      shared: Object.keys(deps).reduce((acc, cur) => {
+        if (
+          [
+            '@emotion/react',
+            'react',
+            'react-dom',
+            'react-router-dom'
+          ].includes(cur)
+        ) acc[cur] = deps[cur];
+
+        return acc;
+      }, {})
     }),
     new HtmlWebPackPlugin({
-      template: "./src/index.html",
+      template: './public/index.html',
     }),
-    new Dotenv()
-  ],
-});
+    new CleanWebpackPlugin(),
+
+    isDev && new EsLintPlugin({extensions: ['ts', 'tsx']})
+  ]
+};
