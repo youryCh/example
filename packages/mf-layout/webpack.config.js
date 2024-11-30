@@ -66,7 +66,8 @@ module.exports = {
       filename: 'remoteEntry.js',
       exposes: {
         './NotFoundPage': './src/exposes/NotFoundPageApp',
-        './Main': './src/exposes/LayoutApp'
+        './Main': './src/exposes/LayoutApp',
+        './NotFoundPage': './src/exposes/ErrorPageApp.ts'
       },
       shared: Object.keys(deps).reduce((acc, cur) => {
         if (

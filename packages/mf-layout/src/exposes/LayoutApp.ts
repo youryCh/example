@@ -1,3 +1,4 @@
 import {Layout} from '@/apps/Layout';
+import {withStyles} from '@/hocs/withStyles';
 
-export default Layout;
+export default withStyles(Layout);

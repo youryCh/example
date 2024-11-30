@@ -5,6 +5,7 @@
     "@emotion/babel-preset-css-prop"
   ],
   "plugins": [
-     ["@babel/transform-runtime"]
+     "babel-plugin-twin",
+     "babel-plugin-macros"
   ]
 }

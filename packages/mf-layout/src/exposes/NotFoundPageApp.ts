@@ -1,3 +1,4 @@
 import {NotFoundPage} from '@/apps/NotFoundPage';
+import {withStyles} from '@/hocs/withStyles';
 
-export default NotFoundPage;
+export default withStyles(NotFoundPage);
