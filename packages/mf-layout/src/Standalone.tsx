@@ -11,7 +11,19 @@ const Standalone = withStyles(() => {
 
   return (
     <BrowserRouter basename="/">
-      <Layout>
+      <Layout
+        navigation={[
+          {
+             icon: 'Info',
+             path: '/page',
+             title: 'Layout',
+             list: [
+              {path: '/sub-menu-1', title: 'SubMenu1'},
+              {path: '/sub-menu-2', title: 'SubMenu2'}
+             ]
+          }
+        ]}
+      >
         <NotFoundPage />
       </Layout>
     </BrowserRouter>

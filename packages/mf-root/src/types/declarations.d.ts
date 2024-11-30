@@ -1,9 +1,14 @@
 // Federated modules type declarations
+/// <reference types="react" />
 
 declare module 'layout/Main' {
   const Layout: React.ComponentType<
     React.PropsWithChildren<{
-      noop?: string;
+      navigation: {
+        title: string;
+        path: string;
+        icon: string;
+      }[];
     }>
   >;
 
@@ -17,7 +22,10 @@ declare module 'layout/NotFoundPage' {
 }
 
 declare module 'layout/ErrorPage' {
-  const ErrorPage: React.ComponentType;
+  const ErrorPage: React.ComponentType<{
+    status?: string;
+    description?: string;
+  }>;
 
   export default ErrorPage;
 }

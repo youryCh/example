@@ -1,8 +1,15 @@
 import {FC} from 'react';
 
-export const ErrorPage: FC = () => (
+interface IProps {
+  description?: string;
+  status?: string;
+}
+
+export const ErrorPage: FC<IProps> = ({description, status}) => (
   <div>
-    <p>Not found</p>
+    <p>Error</p>
+    <p>{description}</p>
+    <p>{status}</p>
 
     <button onClick={() => window.location.reload()}>
       Reload
