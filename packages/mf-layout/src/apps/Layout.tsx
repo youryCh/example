@@ -1,20 +1,23 @@
 import {FC, PropsWithChildren} from 'react';
-// import 'twin.macro';
 
 import {NavSidebar} from '@/components/NavSidebar';
 import {PageHeader} from '@/components/PageHeader';
 
+/**
+ * @prop {TNavigation} navigation  Список айтемов меню.
+ */
 interface IProps extends PropsWithChildren {
-  // navigation: TNavigation;
-  noop?: string
+  navigation: TNavigation;
 }
 
-export const Layout: FC<IProps> = ({children, noop}) => (
-  <div tw="flex cursor-pointer">
-    <NavSidebar />
-    {noop}
+/**
+ * Основной лойаут приложения.
+ */
+export const Layout: FC<IProps> = ({children, navigation}) => (
+  <div tw="flex h-[100vh] gap-6">
+    <NavSidebar navigation={navigation} />
 
-    <main>
+    <main tw="flex w-full flex-col gap-6 overflow-auto py-2 pr-2">
       <PageHeader />
 
       {children}
