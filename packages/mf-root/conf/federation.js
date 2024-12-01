@@ -7,16 +7,17 @@ module.exports = {
       {
         description: 'Example',
         forRoles: [],
-        icon: 'Info',
+        icon: 'UserOutlined',
         route: '/example',
         splat: true,
+        // module: './Example',
         subItems: [
-          // {
-          //   description: 'Главная',
-          //   module: './Main',
-          //   route: '/main',
-          //   scope: ''
-          // }
+          {
+            description: 'Главная',
+            module: './Main', // TODO: add mf module
+            route: '/main',
+            scope: 'main' // TODO: check this
+          }
         ]
       }
     ]

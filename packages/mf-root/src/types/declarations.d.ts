@@ -29,3 +29,9 @@ declare module 'layout/ErrorPage' {
 
   export default ErrorPage;
 }
+
+declare module 'layout/WelcomePage' {
+  const WelcomePage: React.ComponentType<React.PropsWithChildren>;
+
+  export default WelcomePage;
+}

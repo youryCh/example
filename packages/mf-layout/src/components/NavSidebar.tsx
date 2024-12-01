@@ -1,3 +1,4 @@
+import {Layout} from 'antd';
 import {FC} from 'react';
 
 /**
@@ -12,6 +13,14 @@ interface IProps {
  */
 export const NavSidebar: FC<IProps> = ({navigation}) => {
   console.log('NavSidebar');
+
+  return (
+    <Layout
+      
+    >
+      navigation
+    </Layout>
+  );
 
   return (
     <aside tw="py-2 pl-2">
