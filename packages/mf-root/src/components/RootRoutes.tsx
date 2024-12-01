@@ -3,6 +3,8 @@ import WelcomePage from 'layout/WelcomePage';
 import {FC} from 'react';
 import {Navigate, Route, Routes} from 'react-router-dom';
 
+import {FederatedComponent} from './FederatedComponent';
+
 /**
  * @prop {IFederatedItems[]} remotes Список приложений.
  */
@@ -27,7 +29,14 @@ export const RootRoutes: FC<IProps> = ({remotes}) => (
             <Route
               key={subItem.route}
               path={`${cur.route}${subItem.route}${subItem.splat ? '/*' : ''}`}
-              element={<p>{subItem.description}</p>}
+              element={
+                <FederatedComponent
+                  baseURL={`${cur.route}${subItem.route}`}
+                  module={subItem.module}
+                  scope={subItem.scope}
+                  url={subItem.url}
+                />
+              }
             />
           ))
         ];
@@ -38,7 +47,14 @@ export const RootRoutes: FC<IProps> = ({remotes}) => (
         <Route
           key={cur.route}
           path={`${cur.route}${cur.splat ? '/*' : ''}`}
-          element={<p>{cur.description}</p>}
+          element={
+            <FederatedComponent
+              baseURL={cur.route}
+              module={cur.module}
+              scope={cur.scope}
+              url={cur.url}
+            />
+          }
         />
       ];
     }, [])}
