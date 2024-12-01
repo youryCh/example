@@ -67,7 +67,8 @@ module.exports = {
       exposes: {
         './NotFoundPage': './src/exposes/NotFoundPageApp',
         './Main': './src/exposes/LayoutApp',
-        './ErrorPage': './src/exposes/ErrorPageApp.ts'
+        './ErrorPage': './src/exposes/ErrorPageApp',
+        './WelcomePage': './src/exposes/WelcomePageApp'
       },
       shared: Object.keys(deps).reduce((acc, cur) => {
         if (
