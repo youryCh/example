@@ -10,7 +10,7 @@ declare interface IBaseMFProps {
 /**
  * Модель динамического микрофронта второго уровня.
  *
- * @prop {string} module Наименование модуля из mf конфига.
+ * @prop {string} module Наименование expose модуля из mf конфига.
  * @prop {string} url Путь до remoteEntry.js.
  * @prop {string} route Путь до роута.
  * @prop {string} scope Наименование из поля name mf конфига.
