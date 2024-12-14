@@ -21,7 +21,7 @@ const useDynamicScript = (url: string) => {
       setReady(true);
       setErrorLoading(false);
 
-      return
+      return;
     }
 
     setReady(false);
@@ -67,7 +67,8 @@ export const useFederatedComponent = (remoteUrl: string, scope: string, module: 
   const {errorLoading, ready} = useDynamicScript(remoteUrl);
 
   useEffect(() => {
-    if (Component) setComponent(null);
+    // eslint-disable-next-line
+    Component && setComponent(null);
   // eslint-disable-next-line
   }, [key]);
 

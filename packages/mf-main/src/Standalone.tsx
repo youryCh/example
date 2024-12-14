@@ -7,7 +7,7 @@ import {PATHS} from '@/constants/routes';
  * Standalone app.
  */
 const Standalone: FC = () => {
-  const [isDone, setIsDone] = useState(false);
+  const [isDone, setIsDone] = useState<boolean>();
 
   useEffect(() => {
     // TODO: init service

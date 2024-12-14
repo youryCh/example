@@ -1706,6 +1706,18 @@
     "@svgr/plugin-jsx" "8.1.0"
     "@svgr/plugin-svgo" "8.1.0"
 
+"@tabler/icons-react@^3.24.0":
+  version "3.24.0"
+  resolved "https://registry.yarnpkg.com/@tabler/icons-react/-/icons-react-3.24.0.tgz#854fad7a142ee1dd49a62e59f7eb551eadaa318e"
+  integrity sha512-m9c7TmlcDmKqvZAasG5rv1YvazZDrVEhNdNFa2d1Bzotc0dh+iceFdiZCEcYPDb5UcRyLAMvOaOC9y/5sfMMWw==
+  dependencies:
+    "@tabler/icons" "3.24.0"
+
+"@tabler/icons@3.24.0":
+  version "3.24.0"
+  resolved "https://registry.yarnpkg.com/@tabler/icons/-/icons-3.24.0.tgz#a4fd4bbcaa95cea92fa653d427bd298c4d589c5e"
+  integrity sha512-qNis9e90QcdxAGV3wNIeX0Ba2R7ktm0cnqOToKHJfC2kj3fvJwEVLsw63K0/fm7NW8rSZjDSTQRmMnSg8g/wrg==
+
 "@tanstack/query-core@5.62.0":
   version "5.62.0"
   resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.62.0.tgz#94022c9fde3b8c60e69828b726bd0df535dcacf9"

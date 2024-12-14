@@ -1,6 +1,6 @@
 import NotFoundPage from 'layout/NotFoundPage';
 import WelcomePage from 'layout/WelcomePage';
-import {FC} from 'react';
+import {FC, ReactNode, useMemo} from 'react';
 import {Navigate, Route, Routes} from 'react-router-dom';
 
 import {FederatedComponent} from './FederatedComponent';
@@ -15,50 +15,46 @@ interface IProps {
 /**
  * App root routing.
  */
-export const RootRoutes: FC<IProps> = ({remotes}) => (
-  <Routes>
-    <Route path="/" element={<WelcomePage />} />
-    <Route path="/404" element={<NotFoundPage />} />
-    {/* <Route path="/" element={<Navigate to={remotes[0]?.route || '/404'} replace />} /> */}
+export const RootRoutes: FC<IProps> = ({remotes}) => {
+  const routes = useMemo(() => {
+    const getRoutes = (list: IFederatedItem[], basePath?: string): ReactNode[] =>
+      list.reduce((acc, cur) => {
+        const path = `${basePath || ''}${cur.route}${cur.splat ? '/*' : ''}`;
+        const baseUrl = `${basePath || ''}${cur.route}`;
 
-    {remotes.reduce((acc, cur) => {
-      if (cur.subItems) {
-        return [
-          ...acc,
-          ...cur.subItems.map((subItem) => (
-            <Route
-              key={subItem.route}
-              path={`${cur.route}${subItem.route}${subItem.splat ? '/*' : ''}`}
-              element={
-                <FederatedComponent
-                  baseURL={`${cur.route}${subItem.route}`}
-                  module={subItem.module}
-                  scope={subItem.scope}
-                  url={subItem.url}
-                />
-              }
-            />
-          ))
-        ];
-      }
+        return cur?.subItems
+          ?
+            [
+              ...acc,
+              ...getRoutes(cur.subItems, cur.route)
+            ]
+          :
+            [
+              ...acc,
+              <Route
+                key={cur.route}
+                path={path}
+                element={
+                  <FederatedComponent
+                    baseURL={baseUrl}
+                    module={cur.module}
+                    scope={cur.scope}
+                    url={cur.url}
+                  />
+                }
+              />
+            ];
+      }, []);
 
-      return [
-        acc,
-        <Route
-          key={cur.route}
-          path={`${cur.route}${cur.splat ? '/*' : ''}`}
-          element={
-            <FederatedComponent
-              baseURL={cur.route}
-              module={cur.module}
-              scope={cur.scope}
-              url={cur.url}
-            />
-          }
-        />
-      ];
-    }, [])}
+    return getRoutes(remotes);
+  }, [remotes]);
 
-    <Route path="*" element={<Navigate to="/404" />} />
-  </Routes>
-);
+  return (
+    <Routes>
+      <Route path="/" element={<WelcomePage />} />
+      <Route path="/404" element={<NotFoundPage />} />
+      {routes}
+      <Route path="*" element={<Navigate to="/404" />} />
+    </Routes>
+  );
+};

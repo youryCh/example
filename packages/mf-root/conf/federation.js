@@ -7,16 +7,25 @@ module.exports = {
       {
         description: 'Example',
         forRoles: [],
-        icon: 'UserOutlined',
-        route: '/example',
+        icon: 'IconList',
+        route: '/',
         splat: true,
-        // module: './Example',
         subItems: [
           {
-            description: 'Главная',
-            module: './Main', // TODO: add mf module
-            route: '/main',
-            scope: 'main' // TODO: check this
+            description: 'Main',
+            module: './MainApp',
+            route: 'main',
+            scope: 'main_app',
+            icon: 'IconCheck',
+            url: 'http://localhost:3005/remoteEntry.js'
+          },
+          {
+            description: 'Project',
+            module: './Project',
+            route: 'project',
+            scope: 'main_app',
+            icon: 'IconCheck',
+            url: 'http://localhost:3005/remoteEntry.js'
           }
         ]
       }

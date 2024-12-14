@@ -63,26 +63,27 @@ module.exports = {
 
   plugins: [
     new ModuleFederationPlugin({
-      name: 'main',
+      name: 'main_app',
       filename: 'remoteEntry.js',
       exposes: {
-        './Main': './src/exposes/MainApp'
+        './MainApp': './src/exposes/MainApp.ts',
+        './Project': './src/exposes/ProjectApp.ts'
       },
-      shared: {
-       ...Object.keys(deps).reduce((acc, cur) => {
+      shared: Object.keys(deps).reduce((acc, cur) => {
         if (
           [
             '@emotion/react',
             'tanstack/react-query',
             'react',
-            'react-dom'
+            'react-dom',
+            'react-router-dom'
           ].includes(cur)
         ) acc[cur] = deps[cur];
 
         return acc;
        }, {})
       }
-    }),
+    ),
     new HtmlWebPackPlugin({template: './public/index.html'}),
     new CleanWebpackPlugin(),
     isDev && new ESLintPlugin({extensions: ['ts', 'tsx']})

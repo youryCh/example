@@ -1,12 +1,12 @@
 {
-  "name": "mf-main",
+  "name": "main_app",
   "version": "1.0.0",
   "description": "Main app",
   "scripts": {
     "build": "yarn run build:prod",
     "build:dev": "cross-env NODE_ENV=development webpack",
     "build:prod": "cross-env NODE_ENV=production webpack",
-    "start": "yarn run start:standalone",
+    "start": "yarn run start:integrated",
     "start:standalone": "cross-env PUBLIC_PATH=/ yarn run start:integrated",
     "start:integrated": "cross-env NODE_ENV=development webpack serve",
     "watch": "webpack --watch"

@@ -72,8 +72,12 @@ module.exports = {
         'react-router-dom': {
           requiredVersion: deps['react-router-dom'],
           singleton: true
+        },
+        '@emotion/react': {
+          singleton: true,
+          requiredVersion: deps['@emotion/react']
         }
-      },
+      }
     }),
 
     new HtmlWebPackPlugin({

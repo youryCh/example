@@ -4,6 +4,6 @@ export const ElementsPage: FC = () => {
   console.log();
 
   return (
-    <span>Element page</span>
+    <span>Elements page</span>
   );
 };

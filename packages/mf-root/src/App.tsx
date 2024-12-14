@@ -17,13 +17,14 @@ interface IProps {
 const AppContainer: FC<IProps> = ({remotes}) => (
   <BrowserRouter basename="/">
     <Layout
-      navigation={remotes?.map((remote) => ({
+      navigation={remotes.map((remote) => ({
         icon: remote.icon,
         path: remote.route,
         title: remote.description,
         list: remote.subItems?.map((subItem) => ({
           path: subItem.route,
-          title: subItem.description
+          title: subItem.description,
+          icon: subItem.icon
         }))
       }))}
     >
