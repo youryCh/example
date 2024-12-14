@@ -72,7 +72,11 @@ module.exports = {
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {tsconfigRootDir: '.'},
-  plugins: ['@typescript-eslint', 'sort-destructure-keys', 'react-refresh'],
+  plugins: [
+    '@typescript-eslint',
+    'sort-destructure-keys',
+    'react-refresh'
+  ],
   settings: {
     'import/parsers': {'@typescript-eslint/parser': ['.ts', '.tsx']},
     'import/resolver': {

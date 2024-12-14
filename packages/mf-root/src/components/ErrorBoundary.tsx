@@ -14,7 +14,7 @@ export class ErrorBoundary extends Component<PropsWithChildren, IState> {
   }
 
   static getDerivedStateFromError(error: Error) {
-    return error;
+    return {error};
   }
 
   componentDidCatch(error: Error, info: ErrorInfo) {
@@ -22,10 +22,10 @@ export class ErrorBoundary extends Component<PropsWithChildren, IState> {
   }
 
   render() {
-    const {error: {message, name}} = this.state;
+    const {error} = this.state;
 
     return this.state.error
-      ? <ErrorPage description={message} status={name} />
+      ? <ErrorPage description={error.message} />
       : this.props.children;
   }
 }

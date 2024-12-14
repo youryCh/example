@@ -17,8 +17,10 @@ declare interface IBaseMFProps {
  * @prop {string} description Наименование приложения в сайдбаре, шапке.
  * @prop {string[]} [forRoles] Список допущенных ролей.
  * @prop {boolean} [splat] Признак собственного роутинга в микрофронте.
+ * @prop {string} [icon] Icon from tabler.
+ * @prop {IFederatedItem[]} [subItems] Sub items list.
  */
-declare interface IFederatedSubItem {
+declare interface IFederatedItem {
   module: string;
   url: string;
   route: string;
@@ -26,15 +28,6 @@ declare interface IFederatedSubItem {
   description: string;
   forRoles?: string[];
   splat?: boolean;
-}
-
-/**
- * Модель динамического микрофронта первого уровня.
- *
- * @prop {string} icon Иконка для сайдбара.
- * @prop {IFederatedSubItem[]} [subItems] Список приложений второго уровня.
- */
-declare interface IFederatedItem extends IFederatedSubItem {
-  icon: string;
-  subItems?: IFederatedSubItem[];
+  icon?: string;
+  subItems?: IFederatedItem[];
 }

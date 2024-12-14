@@ -1,11 +1,10 @@
-module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
-  darkMode: false, // or 'media' or 'class'
+export default {
+  content: ['./**/*.{tsx,ts}'],
   theme: {
-    extend: {},
+    extend: {}
   },
   variants: {
-    extend: {},
+    extend: {}
   },
-  plugins: [],
-}
+  plugins: []
+};

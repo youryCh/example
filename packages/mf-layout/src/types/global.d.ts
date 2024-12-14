@@ -1,8 +1,3 @@
-declare interface INavListItem {
-  title: string;
-  path: string;
-}
-
 declare interface INavItem {
   title: string;
   icon: string;
