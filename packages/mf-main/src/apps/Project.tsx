@@ -4,7 +4,6 @@ import {Route, Routes} from 'react-router-dom';
 
 import {PATHS} from '@/constants/routes';
 import {withRouter} from '@/hocs';
-import {ElementsPage} from '@/pages/ElementsPage';
 import {IBaseAppProps} from '@/types/common';
 
 /**
@@ -14,6 +13,6 @@ export const Project: FC<IBaseAppProps> = compose(
   withRouter
 )(() => (
   <Routes>
-    <Route path={PATHS.root} element={<ElementsPage />} />
+    <Route path={PATHS.root} element={<p>Project</p>} />
   </Routes>
 ));

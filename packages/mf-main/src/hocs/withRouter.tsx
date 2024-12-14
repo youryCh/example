@@ -11,7 +11,7 @@ type TProps<P> = P & IBaseAppProps;
  */
 export const withRouter = <P extends object>(Component: FC<TProps<P>>) =>
   (props: TProps<P>) => (
-    <BrowserRouter basename={(props.baseUrl || PATHS.root).toLowerCase()}>
+    <BrowserRouter basename={(props.baseURL || PATHS.root).toLowerCase()}>
       <Component {...props} />
     </BrowserRouter>
   );

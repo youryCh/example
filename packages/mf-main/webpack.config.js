@@ -66,7 +66,7 @@ module.exports = {
       name: 'main_app',
       filename: 'remoteEntry.js',
       exposes: {
-        './MainApp': './src/exposes/MainApp.ts',
+        './Main': './src/exposes/MainApp.ts',
         './Project': './src/exposes/ProjectApp.ts'
       },
       shared: Object.keys(deps).reduce((acc, cur) => {

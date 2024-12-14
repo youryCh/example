@@ -8,13 +8,13 @@ module.exports = {
         description: 'Example',
         forRoles: [],
         icon: 'IconList',
-        route: '/',
+        route: '',
         splat: true,
         subItems: [
           {
             description: 'Main',
-            module: './MainApp',
-            route: 'main',
+            module: './Main',
+            route: '/main',
             scope: 'main_app',
             icon: 'IconCheck',
             url: 'http://localhost:3005/remoteEntry.js'
@@ -22,7 +22,7 @@ module.exports = {
           {
             description: 'Project',
             module: './Project',
-            route: 'project',
+            route: '/project',
             scope: 'main_app',
             icon: 'IconCheck',
             url: 'http://localhost:3005/remoteEntry.js'

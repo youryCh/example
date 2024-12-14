@@ -9,7 +9,7 @@ import Welcome from '@/assets/lottie/Welcome.lottie';
 export const WelcomePage: FC = () => (
   <div tw="h-full flex items-center justify-center bg-white">
     <DotLottiePlayer
-      tw="max-w-[1000px]"
+      tw="max-w-[800px]"
       src={Welcome}
       autoplay
       loop
