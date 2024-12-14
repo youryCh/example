@@ -21,7 +21,7 @@ const useDynamicScript = (url: string) => {
       setReady(true);
       setErrorLoading(false);
 
-      return
+      return;
     }
 
     setReady(false);
@@ -31,7 +31,7 @@ const useDynamicScript = (url: string) => {
       src: url,
       type: 'text/javascript',
       async: true,
-      onLoad() {
+      onload() {
         urlCache.add(url);
         setReady(true);
       },
