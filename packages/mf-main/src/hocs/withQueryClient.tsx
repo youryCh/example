@@ -1,6 +1,9 @@
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {FC} from 'react';
 
+/**
+ * Default query client settings.
+ */
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -10,7 +13,7 @@ const queryClient = new QueryClient({
 });
 
 /**
- * Хок подключения React query.
+ * React query setup HOC.
  */
 export const withQueryClient = <P,>(Component: FC<P>) =>
 (props: P) => (

@@ -4,7 +4,7 @@ module.exports = {
   root: true,
   extends: ['airbnb', 'airbnb/hooks', 'plugin:@typescript-eslint/recommended', 'prettier'],
   rules: {
-    // import rules
+    // import
     'import/extensions': [
       'error',
       'ignorePackages',
@@ -12,8 +12,8 @@ module.exports = {
         js: 'never',
         jsx: 'never',
         ts: 'never',
-        tsx: 'never'
-      }
+        tsx: 'never',
+      },
     ],
     'import/no-extraneous-dependencies': 'off',
     'import/no-unresolved': 'off',
@@ -23,13 +23,14 @@ module.exports = {
         'groups': ['external', 'builtin', ['internal', 'unknown'], 'parent', 'sibling'],
         'alphabetize': {
           order: 'asc',
-          caseInsensitive: true
+          caseInsensitive: true,
         },
-        'newlines-between': 'always'
-      }
+        'newlines-between': 'always',
+      },
     ],
     'import/prefer-default-export': 'off',
-    // react rules
+
+    // react
     'react/button-has-type': 'off',
     'react/destructuring-assignment': 'off',
     'react/function-component-definition': 'off',
@@ -44,19 +45,24 @@ module.exports = {
     'react/prop-types': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/require-default-props': 'off',
-    // react-refresh rules
+
+    // react-refresh
     'react-refresh/only-export-components': 'warn',
-    // ts rules
+
+    // ts
     '@typescript-eslint/no-empty-interface': 'off',
     '@typescript-eslint/no-shadow': 'warn',
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
-    // sort-destructive-keys rules
+
+    // sort-destructive-keys
     'sort-destructure-keys/sort-destructure-keys': ['warn', {caseSensitive: false}],
-    // a11y rules
+
+    // jax-a11y
     'jsx-a11y/click-events-have-key-events': 'off',
     'jsx-a11y/no-static-element-interactions': 'off',
-    // common rules
+
+    // common
     'arrow-parens': 'off',
     'camelcase': 'off',
     'consistent-return': 'off',
@@ -64,31 +70,28 @@ module.exports = {
     'max-len': ['error', {code: 120}],
     'no-plusplus': 'off',
     'no-shadow': 'off',
-    'no-trailing-spaces': ['error', {'skipBlankLines': true}],
+    'no-trailing-spaces': ['error', {skipBlankLines: true}],
     'no-underscore-dangle': ['error', {allowAfterThis: true}],
     'no-void': 'off',
     'object-curly-spacing': ['error', 'never'],
     'no-console': 0,
-    'no-use-before-define': ['error', {'functions': true, 'classes': true, 'variables': false}]
+    'no-use-before-define': ['error', {"functions": true, "classes": true, "variables": false}]
   },
   parser: '@typescript-eslint/parser',
-  parserOptions: {tsconfigRootDir: '.'},
-  plugins: [
-    '@typescript-eslint',
-    'sort-destructure-keys',
-    'react-refresh'
-  ],
+  parserOptions: {
+    tsconfigRootDir: '.',
+  },
+  plugins: ['@typescript-eslint', 'sort-destructure-keys', 'react-refresh'],
   settings: {
-    'import/parsers': {'@typescript-eslint/parser': ['.ts', '.tsx']},
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
+    },
     'import/resolver': {
-      typescript: {
-        alwaysTryTypes: true,
-        project: './'
-      },
+      typescript: {alwaysTryTypes: true, project: './'},
       node: {
         paths: [path.resolve(__dirname, './')],
-        extensions: ['.js', '.jsx', '.mdx', '.tsx', '.ts']
-      }
-    }
-  }
+        extensions: ['.js', '.jsx', '.mdx', '.tsx', '.ts'],
+      },
+    },
+  },
 };
