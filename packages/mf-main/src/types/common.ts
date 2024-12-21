@@ -8,6 +8,34 @@ export interface IBaseAppProps {
 }
 
 /**
+ * Sort setting model.
+ *
+ * @prop {string | string[]} sortPropertyName Sorting parameters.
+ * @prop {boolean} sortDirectionAsc Ascend flag.
+ */
+interface ISort {
+  sortPropertyName: string | string[];
+  sortDirectionAsc: boolean;
+}
+
+/**
+ * Pagination settings model.
+ *
+ * @prop {boolean} hasNextPage Next page flag.
+ * @prop {number} page Current page.
+ * @prop {number} size Items per page.
+ * @prop {number} totalCount Total pages count.
+ * @prop {ISort} [sort] Sort params.
+ */
+export interface IPagination {
+  hasNextPage: boolean;
+  page: number;
+  size: number;
+  totalCount: number;
+  sort?: ISort;
+}
+
+/**
  * Filter model.
  *
  * @prop {Partial<T>} filter Filter settings.
