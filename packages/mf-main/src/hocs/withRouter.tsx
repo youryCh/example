@@ -7,7 +7,7 @@ import {IBaseAppProps} from '@/types/common';
 type TProps<P> = P & IBaseAppProps;
 
 /**
- * Хок подключения react router.
+ * React router setup HOC.
  */
 export const withRouter = <P extends object>(Component: FC<TProps<P>>) =>
   (props: TProps<P>) => (
