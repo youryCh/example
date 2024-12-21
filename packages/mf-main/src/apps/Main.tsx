@@ -3,19 +3,20 @@ import {FC} from 'react';
 import {Route, Routes} from 'react-router-dom';
 
 import {PATHS} from '@/constants/routes';
-import {withQueryClient, withRouter, withStyled} from '@/hocs';
-import {ElementsPage} from '@/pages/ElementsPage';
+import {withNotification, withQueryClient, withRouter, withStyled} from '@/hocs';
+import {ProjectsPage} from '@/pages/ProjectsPage';
 import {IBaseAppProps} from '@/types/common';
 
 /**
- * Базовый компонент с основными роутами приложения.
+ * Main base routing component.
  */
 export const Main: FC<IBaseAppProps> = compose(
   withQueryClient,
   withStyled,
-  withRouter
+  withRouter,
+  withNotification
 )(() => (
   <Routes>
-    <Route path={PATHS.root} element={<ElementsPage />} />
+    <Route path={PATHS.root} element={<ProjectsPage />} />
   </Routes>
 ));

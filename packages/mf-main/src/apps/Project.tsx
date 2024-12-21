@@ -7,7 +7,7 @@ import {withRouter} from '@/hocs';
 import {IBaseAppProps} from '@/types/common';
 
 /**
- * Базовый компонент с основными роутами приложения.
+ * Project base routing component.
  */
 export const Project: FC<IBaseAppProps> = compose(
   withRouter

@@ -2,6 +2,7 @@ import {FC, useEffect, useState} from 'react';
 
 import {Main} from '@/apps/Main';
 import {PATHS} from '@/constants/routes';
+import {NO_STANDALONE_MESSAGE} from '@/constants/typography';
 
 /**
  * Standalone app.
@@ -15,10 +16,10 @@ const Standalone: FC = () => {
   }, []);
 
   if (process.env.NODE_ENV !== 'development') {
-    return <p>This app isn&rsquo;t working in standalone mode</p>;
+    return <p>{NO_STANDALONE_MESSAGE}</p>;
   }
 
-  return isDone ? <Main baseUrl={PATHS.root} /> : null;
+  return isDone && <Main baseURL={PATHS.root} />;
 };
 
 export default Standalone;
